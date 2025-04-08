@@ -82,6 +82,37 @@
             font-weight: bold;
             transition: all 0.3s ease;
             width: 100%;
+            position: relative;
+        }
+        
+        .loading button {
+            color: transparent;
+        }
+        
+        .loading button::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 2px solid white;
+            width: 15px;
+            height: 15px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .error {
+            color: red;
+            margin-top: 10px;
+            min-height: 20px;
+            font-size: 14px;
         }
         
         footer {
@@ -90,6 +121,17 @@
             padding: 15px 0;
             text-align: center;
             margin-top: auto;
+        }
+        
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            margin-top: 8px;
+            font-size: 0.9rem;
         }
         
         @media (max-width: 480px) {
@@ -136,7 +178,7 @@
         <div class="footer-content">
             <p style="margin: 5px 0; font-size: 0.9rem;">&copy; 2024 GCC Kuttyalam Kootayma</p>
             <a href="https://wa.me/919746431460?text=Hello%20from%20GCC%20Kuttyalam%20Kootayma%20website" 
-               style="display: inline-block; background-color: #25D366; color: white; padding: 8px 15px; border-radius: 20px; text-decoration: none; margin-top: 8px; font-size: 0.9rem;">
+               class="whatsapp-btn" target="_blank">
                 <i class="fab fa-whatsapp"></i> Contact via WhatsApp
             </a>
         </div>
@@ -151,10 +193,18 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const errorElement = document.getElementById('error-message');
+            const loginButton = event.target.querySelector('button[type="submit"]');
             
             if (username === SHARED_USERNAME && password === SHARED_PASSWORD) {
-                localStorage.setItem('isLoggedIn', 'true');
-                window.location.href = 'index.html';
+                // Show loading state
+                loginButton.disabled = true;
+                event.target.classList.add('loading');
+                
+                // Simulate processing delay
+                setTimeout(() => {
+                    localStorage.setItem('isLoggedIn', 'true');
+                    window.location.href = 'index.html';
+                }, 1000);
             } else {
                 errorElement.textContent = 'Invalid username or password';
             }
