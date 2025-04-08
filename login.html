@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login - GCC Kuttyalam Kootayma</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            color: #1d4ed8;
+            font-size: 2.2rem;
+            margin: 0;
+            padding: 10px 0;
+        }
+        .login-main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+        }
+        .login-container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        input {
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input:focus {
+            border-color: #1d4ed8;
+            outline: none;
+        }
+        button {
+            padding: 14px;
+            background-color: #1d4ed8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #1a3fb3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .error {
+            color: red;
+            margin-top: 15px;
+            font-size: 15px;
+            min-height: 20px;
+        }
+        footer {
+            background-color: #1d4ed8;
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-content p {
+            margin: 5px 0;
+        }
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <h1>GCC KUTTYALAM KOOTAYMA</h1>
+    </div>
+    
+    <main class="login-main">
+        <div class="login-container">
+            <h2>Member Login</h2>
+            <form class="login-form" onsubmit="return validateLogin(event)">
+                <input type="text" id="username" placeholder="Enter Username" required>
+                <input type="password" id="password" placeholder="Enter Password" required>
+                <button type="submit">LOGIN</button>
+                <div id="error-message" class="error"></div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 All rights reserved by GCC Kuttyalam Kootayma</p>
+            <p>Designed by Arshad Kuttyalam</p>
+            <a href="https://wa.me/919746431460?text=Hello%20from%20GCC%20Kuttyalam%20Kootayma%20website" 
+               class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                Contact via WhatsApp
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Shared credentials
+        const SHARED_USERNAME = "gcc";
+        const SHARED_PASSWORD = "123";
+        
+        function validateLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorElement = document.getElementById('error-message');
+            
+            if (username === SHARED_USERNAME && password === SHARED_PASSWORD) {
+                localStorage.setItem('isLoggedIn', 'true');
+                window.location.href = 'index.html';
+            } else {
+                errorElement.textContent = 'Invalid username or password';
+            }
+        }
+    </script>
+</body>
+</html>

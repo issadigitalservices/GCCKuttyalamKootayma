@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    // Check if user is logged in when index.html loads
+    if (!localStorage.getItem('isLoggedIn')) {
+        window.location.href = 'login.html';
+    }
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GCC KUTTYALAM KOOTAYMA - YEARS</title>
@@ -41,6 +47,25 @@
       <a href="2025.html" class="bg-white border-2 border-blue-200 shadow-button p-4 md:p-6 rounded-xl text-center hover:bg-blue-50 hover:shadow-button-hover hover:border-primary font-bold text-lg md:text-xl transition-all duration-300 transform hover:scale-105">2028</a>
     </div>
   </div>
+
+  <div class="text-center mt-8 mb-4">
+    <button 
+      onclick="logout()" 
+      class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center mx-auto"
+    >
+      <i class="fas fa-sign-out-alt mr-2"></i>
+      Logout
+    </button>
+  </div>
+  
+  <script>
+      function logout() {
+          // Clear the login flag
+          localStorage.removeItem('isLoggedIn');
+          // Immediately redirect to login page
+          window.location.href = 'login.html';
+      }
+  </script>
 
   <footer class="bg-blue-600 text-white py-6 mt-6">
     <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
