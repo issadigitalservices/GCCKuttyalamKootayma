@@ -1,126 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - GCC Kuttyalam Kootayma</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
             background-color: #f5f5f5;
         }
+        
         .header {
             text-align: center;
-            padding: 20px 0;
+            padding: 15px 0;
             background-color: white;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
+        
         .header h1 {
             color: #1d4ed8;
-            font-size: 2.2rem;
+            font-size: 1.5rem;
             margin: 0;
-            padding: 10px 0;
         }
+        
         .login-main {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px 20px;
+            padding: 20px;
         }
+        
         .login-container {
             background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            width: 400px;
-            max-width: 90%;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
             text-align: center;
+            margin: 10px 0;
         }
+        
         .login-container h2 {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
             color: #333;
         }
+        
         .login-form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
+        
         input {
-            padding: 14px;
+            padding: 12px;
             border: 1px solid #ddd;
             border-radius: 6px;
             font-size: 16px;
             width: 100%;
             box-sizing: border-box;
         }
-        input:focus {
-            border-color: #1d4ed8;
-            outline: none;
-        }
+        
         button {
-            padding: 14px;
+            padding: 12px;
             background-color: #1d4ed8;
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             transition: all 0.3s ease;
             width: 100%;
         }
-        button:hover {
-            background-color: #1a3fb3;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .error {
-            color: red;
-            margin-top: 15px;
-            font-size: 15px;
-            min-height: 20px;
-        }
+        
         footer {
             background-color: #1d4ed8;
             color: white;
-            padding: 25px 0;
+            padding: 15px 0;
             text-align: center;
+            margin-top: auto;
         }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-        .footer-content p {
-            margin: 5px 0;
-        }
-        .whatsapp-btn {
-            background-color: #25D366;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            margin-top: 10px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        .whatsapp-btn:hover {
-            background-color: #128C7E;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .whatsapp-btn i {
-            margin-right: 10px;
-            font-size: 18px;
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.3rem;
+            }
+            
+            .login-container {
+                padding: 20px;
+                margin: 5px 0;
+            }
+            
+            .login-container h2 {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
+            
+            input, button {
+                padding: 10px;
+                font-size: 14px;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -144,24 +134,20 @@
 
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 All rights reserved by GCC Kuttyalam Kootayma</p>
-            <p>Designed by Arshad Kuttyalam</p>
+            <p style="margin: 5px 0; font-size: 0.9rem;">&copy; 2024 GCC Kuttyalam Kootayma</p>
             <a href="https://wa.me/919746431460?text=Hello%20from%20GCC%20Kuttyalam%20Kootayma%20website" 
-               class="whatsapp-btn" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-                Contact via WhatsApp
+               style="display: inline-block; background-color: #25D366; color: white; padding: 8px 15px; border-radius: 20px; text-decoration: none; margin-top: 8px; font-size: 0.9rem;">
+                <i class="fab fa-whatsapp"></i> Contact via WhatsApp
             </a>
         </div>
     </footer>
 
     <script>
-        // Shared credentials
         const SHARED_USERNAME = "gcc";
         const SHARED_PASSWORD = "123";
         
         function validateLogin(event) {
             event.preventDefault();
-            
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const errorElement = document.getElementById('error-message');
