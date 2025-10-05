@@ -28,17 +28,18 @@
 
     table {
       border-collapse: collapse;
-      width: max-content; /* ensures table width fits its content */
-      table-layout: auto; /* let columns auto-size based on content */
+      table-layout: auto; /* auto-fit based on content */
+      width: max-content; /* shrink table to fit content */
       min-width: 100%;
     }
 
     th, td {
       border: 1px solid #999;
-      padding: 6px 8px;
+      padding: 5px 6px;
       text-align: center;
       font-size: 13px;
       white-space: nowrap;
+      width: 1%; /* let each column shrink-fit to its content */
     }
 
     th {
@@ -49,14 +50,13 @@
       z-index: 10;
     }
 
-    /* S.No column — smallest possible */
+    /* S.No column */
     td:first-child, th:first-child {
       position: sticky;
       left: 0;
       background-color: #f2f2f2;
       z-index: 5;
       font-weight: bold;
-      width: 1%;
     }
 
     th:first-child {
@@ -65,16 +65,14 @@
       z-index: 15;
     }
 
-    /* Name column — width adjusts exactly to content */
+    /* Name column */
     td:nth-child(2), th:nth-child(2) {
       position: sticky;
-      left: 50px; /* enough to overlap S.No width */
+      left: 50px; /* adjust if needed */
       background-color: #fff;
       z-index: 5;
       text-align: left;
       padding-left: 8px;
-      width: 1%; /* forces browser to shrink-fit to content */
-      max-width: 1px;
     }
 
     th:nth-child(2) {
@@ -173,7 +171,7 @@
   </div>
 
   <script>
-    // Make cells editable and toggle status colors
+    // Make cells editable and toggle paid/pending color
     document.querySelectorAll("tbody td:not(:first-child):not(:nth-child(2))").forEach(td => {
       td.contentEditable = true;
       td.classList.add("editable");
