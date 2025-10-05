@@ -29,12 +29,11 @@
     table {
       border-collapse: collapse;
       width: 100%;
-      min-width: 600px;
     }
 
     th, td {
       border: 1px solid #999;
-      padding: 6px;
+      padding: 6px 8px;
       text-align: center;
       font-size: 13px;
       white-space: nowrap;
@@ -48,13 +47,15 @@
       z-index: 10;
     }
 
-    /* Sticky S.No column */
+    /* S.No column — small auto width */
     td:first-child, th:first-child {
       position: sticky;
       left: 0;
       background-color: #f2f2f2;
       z-index: 5;
       font-weight: bold;
+      width: 1%;
+      white-space: nowrap;
     }
 
     th:first-child {
@@ -63,14 +64,16 @@
       z-index: 15;
     }
 
-    /* Sticky Name column */
+    /* Name column — auto width based on content */
     td:nth-child(2), th:nth-child(2) {
       position: sticky;
-      left: 60px;
+      left: calc(1% + 40px);
       background-color: #fff;
       z-index: 5;
       text-align: left;
       padding-left: 10px;
+      white-space: nowrap;
+      width: auto;
     }
 
     th:nth-child(2) {
@@ -169,7 +172,7 @@
   </div>
 
   <script>
-    // Make cells editable and toggle status
+    // Make cells editable and toggle status colors
     document.querySelectorAll("tbody td:not(:first-child):not(:nth-child(2))").forEach(td => {
       td.contentEditable = true;
       td.classList.add("editable");
